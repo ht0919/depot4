@@ -1,28 +1,61 @@
-== README
+# Depot for Rails 4.0.2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- 書籍『RailsによるアジャイルWebアプリケーション開発(第４版)』のサンプル(depot)を、Rails4に移植した時の記録です。
 
-Things you may want to cover:
+## 動作環境
 
-* Ruby version
+- OS: macOS 10.12.6
+- Ruby: 2.0.0-p353
+- Rails: 4.0.2
 
-* System dependencies
+## 実装手順
 
-* Configuration
+```
+$ git clone https://github.com/ht0919/depot4.git
+$ cd depot4
+$ rake db:migrate
+$ rake db:seed
+$ rake test
+$ rails server
+```
 
-* Database creation
+## 第6章 タスクA:アプリケーションの作成
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- confirmの表記(p.71)
+  - 修正前：confirm: 'Are you sure?',
+  - 修正後：__data: {__ confirm: 'Are you sure?' __}__,
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## 第7章 タスクB:検証とユニットテスト
+
+- 正規表現の記号(p.78)
+  - 修正前：with: %r{\.(gif|jpg|png)__$__}i,
+  - 修正後：with: %r{\.(gif|jpg|png)__\z__}i,
+
+
+- 機能テストのフォルダ名(p.78)
+  - 修正前：test/__functional__/products_controller_test.rb
+  - 修正後：test/__controllers__/products_controller_test.rb
+
+
+- ユニットテストのフォルダ名(p.80)
+  - 修正前：test/__unit__/product_test.rb
+  - 修正後：test/__model__/product_test.rb
+
+
+- ユニットテストの実行(p.81)
+  - 修正前：rake test:__units__
+  - 修正後：rake test:__models__
+
+
+- I18nによるテスト(p.86)
+  - 準備：config/locales/en.ymlに以下のように修正
+  ```
+  en:
+    hello: "Hello world"
+
+    activerecord:
+      errors:
+        messages:
+          taken: "has already been taken"
+  ```
