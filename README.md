@@ -1,6 +1,6 @@
 # Depot for Rails 4.0.2
 
-- 書籍『RailsによるアジャイルWebアプリケーション開発(第４版)』のサンプル(depot)を、Rails4に移植した時の記録です。
+- 書籍『RailsによるアジャイルWebアプリケーション開発(第４版)』のサンプル(depot)をRails4に移植した時の変更記録です。
 
 ## 動作環境
 
@@ -49,7 +49,7 @@ $ rails server
 
 
 - I18nによるテスト(p.86)
-  - 準備：config/locales/en.ymlに以下のように修正
+  - 準備：config/locales/en.ymlを以下のように修正
   ```
   en:
     hello: "Hello world"
