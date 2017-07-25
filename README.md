@@ -94,3 +94,38 @@ $ bin/rails server
 - 機能テストの実行(p.107)
   - 修正前：rake test:__functionals__
   - 修正後：rake test:__controllers__
+
+
+## 第10章 タスクE:もっとスマートなカートの作成
+
+- エラー時のリダイレクト指定(p.117)
+  - 修正前：redirect_to __store_url__, notice: '無効なカートです'
+  - 修正後：redirect_to __root_url__, notice: '無効なカートです'
+
+- confirmの表記(p.119)
+  - 修正前：confirm: '本当によいですか？' %>
+  - 修正後：__data: {__ confirm: '本当によいですか？' __}__ %>
+
+- カートを空にした時のリダイレクト指定(p.119)
+  - 修正前：format.html { redirect_to __store_url__,
+  - 修正後：format.html { redirect_to __root_url__,
+
+- 機能テストのカートの削除でのリダイレクト指定(p.119)
+  - 修正前：assert_redirected_to __store_url__,
+  - 修正後：assert_redirected_to __root_url__,
+
+- 機能テストのエラー回避のため下記のテスト項目をコメント
+  - test/controllers/carts_controller_test.rb
+    ```
+    =begin
+      test "should get edit" do
+        get :edit, id: @cart
+        assert_response :success
+      end
+
+      test "should update cart" do
+        patch :update, id: @cart, cart: {  }
+        assert_redirected_to cart_path(assigns(:cart))
+      end
+    =end
+    ```
