@@ -80,3 +80,17 @@ $ bin/rails server
 - 機能テストの実行(p.100)
   - 修正前：rake test:__functionals__
   - 修正後：rake test:__controllers__
+
+
+## 第9章 タスクD:カートの作成
+
+- 機能テストのフォルダ名(p.107)
+  - 修正前：test/__functional__/line_items_controller_test.rb
+  - 修正後：test/__controllers__/line_items_controller_test.rb
+
+- 機能テストの準備(p.107)
+  - rake db:migrate RAILS_ENV=test
+
+- 機能テストの実行(p.107)
+  - 修正前：rake test:__functionals__
+  - 修正後：rake test:__controllers__
