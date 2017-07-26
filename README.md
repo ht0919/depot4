@@ -114,18 +114,31 @@ $ bin/rails server
   - 修正前：assert_redirected_to __store_url__,
   - 修正後：assert_redirected_to __root_url__,
 
-- 機能テストのエラー回避のため下記のテスト項目をコメント
-  - test/controllers/carts_controller_test.rb
+- 機能テストのエラー回避のためeditメソッドを修正
+  * app/controllers/carts_controller.rb
+  - 修正前：
     ```
-    =begin
-      test "should get edit" do
-        get :edit, id: @cart
-        assert_response :success
-      end
+    def edit
+    end
+    ```
+  - 修正後：
+    ```
+    def edit
+      @cart = Cart.find(params[:id])
+    end
+    ```
 
-      test "should update cart" do
-        patch :update, id: @cart, cart: {  }
-        assert_redirected_to cart_path(assigns(:cart))
-      end
-    =end
+- 機能テストのエラー回避のためupdateメソッドを修正
+  * app/controllers/carts_controller.rb
+  - 修正前：
+    ```
+    def update
+      respond_to do |format|
+    ```
+  - 修正後：
+    ```
+    def update
+      @cart = Cart.find(params[:id])
+
+      respond_to do |format|
     ```
