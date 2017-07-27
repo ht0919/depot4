@@ -75,8 +75,8 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       #format.html { redirect_to store_url,
-      format.html { redirect_to root_url,
-        notice: 'カートは現在空です' }
+      format.html { redirect_to root_url }
+        # notice: 'カートは現在空です' }
       format.json { head :ok }
     end
   end

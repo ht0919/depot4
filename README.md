@@ -142,3 +142,23 @@ $ bin/rails server
 
       respond_to do |format|
     ```
+
+## 第11章 タスクF:Ajaxの追加
+
+- ページ遷移の変更でリダイレクト指定(p.131)
+  * app/controllers/line_items_controller.rb
+  - 修正前：format.html { redirect_to __store_url__ }
+  - 修正後：format.html { redirect_to __root_path__ }
+
+- 変更内容の強調表示(p.135)
+  - Genfileの末尾に「gem 'jquery-ui-rails'」を追加
+  - bin/bundle install
+  - サーバーの再起動(Ctrl+C -> rails s)
+
+- 機能テストのフォルダ名(p.143)
+  - 修正前：test/__functional__/line_items_controller_test.rb
+  - 修正後：test/__controllers__/line_items_controller_test.rb
+
+- 機能テストのリダイレクト指定(p.119)
+  - 修正前：assert_redirected_to __store_path__,
+  - 修正後：assert_redirected_to __root_path__,
