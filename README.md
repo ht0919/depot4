@@ -69,13 +69,16 @@ $ bin/rails server
   - 修正前：root to: 'store#index', as 'store'
   - 修正後：root 'store#index'
 
+
 - index.htmlの削除(p.91)
   - 修正前：rm public/index.html
   - 修正後：何もしない
 
+
 - 機能テストのフォルダ名(p.98)
   - 修正前：test/__functional__/store_controller_test.rb
   - 修正後：test/__controllers__/store_controller_test.rb
+
 
 - 機能テストの実行(p.100)
   - 修正前：rake test:__functionals__
@@ -88,8 +91,10 @@ $ bin/rails server
   - 修正前：test/__functional__/line_items_controller_test.rb
   - 修正後：test/__controllers__/line_items_controller_test.rb
 
+
 - 機能テストの準備(p.107)
   - rake db:migrate RAILS_ENV=test
+
 
 - 機能テストの実行(p.107)
   - 修正前：rake test:__functionals__
@@ -102,17 +107,21 @@ $ bin/rails server
   - 修正前：redirect_to __store_url__, notice: '無効なカートです'
   - 修正後：redirect_to __root_url__, notice: '無効なカートです'
 
+
 - confirmの表記(p.119)
   - 修正前：confirm: '本当によいですか？' %>
   - 修正後：__data: {__ confirm: '本当によいですか？' __}__ %>
+
 
 - カートを空にした時のリダイレクト指定(p.119)
   - 修正前：format.html { redirect_to __store_url__,
   - 修正後：format.html { redirect_to __root_url__,
 
+
 - 機能テストのカートの削除でのリダイレクト指定(p.119)
   - 修正前：assert_redirected_to __store_url__,
   - 修正後：assert_redirected_to __root_url__,
+
 
 - 機能テストのエラー回避のためeditメソッドを修正
   * app/controllers/carts_controller.rb
@@ -127,6 +136,7 @@ $ bin/rails server
       @cart = Cart.find(params[:id])
     end
     ```
+
 
 - 機能テストのエラー回避のためupdateメソッドを修正
   * app/controllers/carts_controller.rb
@@ -143,6 +153,7 @@ $ bin/rails server
       respond_to do |format|
     ```
 
+
 ## 第11章 タスクF:Ajaxの追加
 
 - ページ遷移の変更でリダイレクト指定(p.131)
@@ -150,18 +161,22 @@ $ bin/rails server
   - 修正前：format.html { redirect_to __store_url__ }
   - 修正後：format.html { redirect_to __root_path__ }
 
+
 - 変更内容の強調表示(p.135)
   - Genfileの末尾に「gem 'jquery-ui-rails'」を追加
   - bin/bundle install
   - サーバーの再起動(Ctrl+C -> rails s)
 
+
 - 機能テストのフォルダ名(p.143)
   - 修正前：test/__functional__/line_items_controller_test.rb
   - 修正後：test/__controllers__/line_items_controller_test.rb
 
+
 - 機能テストのリダイレクト指定(p.119)
   - 修正前：assert_redirected_to __store_path__,
   - 修正後：assert_redirected_to __root_path__,
+
 
 ## 第12章 タスクG:チェックアウト！
 
@@ -170,23 +185,29 @@ $ bin/rails server
   - 修正前：redirect_to __store_url__, notice: "カートは空です"
   - 修正後：redirect_to __root_url__, notice: "カートは空です"
 
+
 - 機能テストのフォルダ名(p.149)
   - 修正前：test/__functional__/order_controller_test.rb
   - 修正後：test/__controllers__/order_controller_test.rb
+
 
 - ページ遷移の変更でリダイレクト指定(p.149)
   * test/controllers/orders_controller_test.rb
   - 修正前：assert_redirected_to __store_path__
   - 修正後：assert_redirected_to __root_path__
 
-- テストを通すため選択メニューを英語化(p.152)
-  - 修正前：PAYMENT_TYPES = [ "現金", "クレジットカード", "注文書" ]
-  - 修正後：PAYMENT_TYPES = [ "Check", "Credit card", "Purchase order" ]
+
+- テスト用のフィクスチャデータを修正(p.153)
+  * test/fixtures/orders.yml
+  - 修正前：pay_type: __Check__
+  - 修正後：pay_type: __現金__
+
 
 - ページ遷移の変更でリダイレクト指定(p.155)
   * app/controllers/orders_controller.rb
   - 修正前：format.html { redirect_to __store_url__, notice:'ご注文ありがとうございます' }
   - 修正後：format.html { redirect_to __root_url__, notice:'ご注文ありがとうございます' }
+
 
 - ページ遷移の変更でリダイレクト指定(p.156)
   * test/controllers/orders_controller_test.rb
@@ -209,13 +230,6 @@ $ bin/rails server
     end
   end
   ```
-
-
-- テストを通すため「現金」を英語化(p.163)
-  * script/load_orders.rb
-  - 修正前：:email => "customer-#{i}@example.com", :pay_type => "__現金__")
-  - 修正後：:email => "customer-#{i}@example.com", :pay_type => "__Check__")
-
 
 - ArgumentError in OrdersController#index対策(p.164)
   * app/controllers/orders_controller.rb
