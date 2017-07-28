@@ -215,7 +215,7 @@ $ bin/rails server
   - 修正後：assert_redirected_to __root_path__
 
 
-- ActiveModel::ForbiddenAttributesError対策(p.157)
+- ActiveModel::ForbiddenAttributesError 対策(p.157)
   * config/application.rb
   - 修正前：
   ```
@@ -231,7 +231,7 @@ $ bin/rails server
   end
   ```
 
-- ArgumentError in OrdersController#index対策(p.164)
+- ArgumentError in OrdersController#index 対策(p.164)
   * app/controllers/orders_controller.rb
   - 修正前：
   ```
