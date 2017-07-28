@@ -162,3 +162,70 @@ $ bin/rails server
 - 機能テストのリダイレクト指定(p.119)
   - 修正前：assert_redirected_to __store_path__,
   - 修正後：assert_redirected_to __root_path__,
+
+## 第12章 タスクG:チェックアウト！
+
+- ページ遷移の変更でリダイレクト指定(p.149)
+  * app/controllers/orders_controller.rb
+  - 修正前：redirect_to __store_url__, notice: "カートは空です"
+  - 修正後：redirect_to __root_url__, notice: "カートは空です"
+
+- 機能テストのフォルダ名(p.149)
+  - 修正前：test/__functional__/order_controller_test.rb
+  - 修正後：test/__controllers__/order_controller_test.rb
+
+- ページ遷移の変更でリダイレクト指定(p.149)
+  * test/controllers/orders_controller_test.rb
+  - 修正前：assert_redirected_to __store_path__
+  - 修正後：assert_redirected_to __root_path__
+
+- テストを通すため選択メニューを英語化(p.152)
+  - 修正前：PAYMENT_TYPES = [ "現金", "クレジットカード", "注文書" ]
+  - 修正後：PAYMENT_TYPES = [ "Check", "Credit card", "Purchase order" ]
+
+- ページ遷移の変更でリダイレクト指定(p.155)
+  * app/controllers/orders_controller.rb
+  - 修正前：format.html { redirect_to __store_url__, notice:'ご注文ありがとうございます' }
+  - 修正後：format.html { redirect_to __root_url__, notice:'ご注文ありがとうございます' }
+
+- ページ遷移の変更でリダイレクト指定(p.156)
+  * test/controllers/orders_controller_test.rb
+  - 修正前：assert_redirected_to __store_path__
+  - 修正後：assert_redirected_to __root_path__
+
+
+- ActiveModel::ForbiddenAttributesError対策(p.157)
+  * config/application.rb
+  - 修正前：
+  ```
+      # config.i18n.default_locale = :de
+    end
+  end
+  ```
+  - 修正後：
+  ```
+      # config.i18n.default_locale = :de
+      config.action_controller.permit_all_parameters = true
+    end
+  end
+  ```
+
+
+- テストを通すため「現金」を英語化(p.163)
+  * script/load_orders.rb
+  - 修正前：:email => "customer-#{i}@example.com", :pay_type => "__現金__")
+  - 修正後：:email => "customer-#{i}@example.com", :pay_type => "__Check__")
+
+
+- ArgumentError in OrdersController#index対策(p.164)
+  * app/controllers/orders_controller.rb
+  - 修正前：
+  ```
+    def index
+      @orders = Order.paginate :page=>params[:page], :order=>'created_at desc', :per_page => 10
+  ```
+  - 修正後：
+  ```
+    def index
+      @orders = Order.page(params[:page]).order('created_at desc').per_page(10)
+  ```

@@ -34,6 +34,9 @@ end
 
 gem 'rails-i18n'
 gem 'jquery-ui-rails'
+gem "thor", "0.19.1"
+
+gem 'will_paginate', '~> 3.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
