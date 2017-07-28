@@ -231,6 +231,7 @@ $ bin/rails server
   end
   ```
 
+
 - ArgumentError in OrdersController#index 対策(p.164)
   * app/controllers/orders_controller.rb
   - 修正前：
