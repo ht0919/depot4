@@ -1,6 +1,7 @@
 # Depot for Rails 4.0.2
 
 - 書籍『RailsによるアジャイルWebアプリケーション開発(第４版)』のサンプル(depot)をRails4に移植した時の変更記録です。
+- 実装範囲は「第6章 タスクA:アプリケーションの作成」から「第14章 タスクI:ログイン」までです。「第15章 タスクJ:国際化」は実装していません。
 
 ## 動作環境
 
@@ -271,6 +272,11 @@ $ bin/rails server
 
 ## 第14章 タスクI:ログイン
 
+- confirmの表記(p.181)
+  - 修正前：<td><%= link_to 'Destroy', user, __confirm: 'Are you sure?', method: :delete__ %></td>
+  - 修正後：<td><%= link_to 'Destroy', user, __method: :delete, data: { confirm: 'Are you sure?' }__ %></td>
+
+
 - ユーザ登録画面の乱れを修正(p.182)
   * app/views/users/\_form.html.erb
   - 修正前：
@@ -291,7 +297,6 @@ $ bin/rails server
       <%= f.submit %>
     </div>
     ```
-
   - 修正後：
     ```
     <div class="field">
@@ -317,17 +322,55 @@ $ bin/rails server
     - 修正前：# gem 'bcrypt-ruby', '~> 3.1.2'
     - 修正後：gem 'bcrypt-ruby', '~> 3.1.2'
 
+
   - 機能テストのフォルダ名(p.188)
     - 修正前：test/__functional__/sessions_controller_test.rb
     - 修正後：test/__controllers__/sessions_controller_test.rb
+
+
+  - ログイン画面の乱れを修正(p.184)
+    * app/views/sessions/new.html.erb
+    - 修正前：
+      ```
+      <div>
+        <%= label_tag :name, '名前:' %>
+        <%= text_field_tag :name, params[:name] %>
+      </div>
+
+      <div>
+        <%= label_tag :password, 'パスワード:' %>
+        <%= password_field_tag :password, params[:password] %>
+      </div>
+
+      <div>
+        <%= submit_tag "ログイン" %>
+      </div>
+      ```  
+    - 修正後：
+      ```
+      <div class="field">
+        <%= label_tag :name, '名前:' %>
+        <%= text_field_tag :name, params[:name] %>
+      </div>
+
+      <div class="field">
+        <%= label_tag :password, 'パスワード:' %>
+        <%= password_field_tag :password, params[:password] %>
+      </div>
+
+      <div class="actions">
+        <%= submit_tag "ログイン" %>
+      </div>
+      ```
+
 
   - ログアウト時のリダイレクト指定(p.186)
     * app/controllers/sessions_controller.rb
     - 修正前：redirect_to __store_url__, notice: "ログアウト"
     - 修正前：redirect_to __root_url__, notice: "ログアウト"
 
+
   - 機能テストでのログアウト時のリダイレクト指定(p.188)
     * test/controllers/sessions_controller_test.rb
     - 修正前：assert_redirected_to __store_url__
     - 修正前：assert_redirected_to __root_url__
-    

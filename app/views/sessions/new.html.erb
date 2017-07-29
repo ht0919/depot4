@@ -7,17 +7,17 @@
     <fieldset>
       <legend>ログインしてください</legend>
 
-      <div>
+      <div class="field">
         <%= label_tag :name, '名前:' %>
         <%= text_field_tag :name, params[:name] %>
       </div>
 
-      <div>
+      <div class="field">
         <%= label_tag :password, 'パスワード:' %>
         <%= password_field_tag :password, params[:password] %>
       </div>
 
-      <div>
+      <div class="actions">
         <%= submit_tag "ログイン" %>
       </div>
     </fieldset>
