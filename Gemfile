@@ -38,6 +38,8 @@ gem "thor", "0.19.1"
 
 gem 'will_paginate', '~> 3.0'
 
+gem 'bcrypt-ruby', '~> 3.1.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

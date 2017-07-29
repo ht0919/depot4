@@ -1,4 +1,20 @@
 Depot4::Application.routes.draw do
+=begin
+  get "admin/index"
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
+=end
+
+  get 'admin' => 'admin#index'
+  controller :sessions do
+    get  'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  resources :users
+
   resources :orders
 
   resources :line_items
@@ -6,7 +22,6 @@ Depot4::Application.routes.draw do
   resources :carts
 
   get "store/index"
-
   resources :products do
     get :who_bought, on: :member
   end
@@ -16,6 +31,7 @@ Depot4::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  #root to: 'store#index', as: 'store'
   root 'store#index'
 
   # Example of regular route:

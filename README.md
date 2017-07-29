@@ -267,3 +267,67 @@ $ bin/rails server
 - 統合テストのpay_type(p.176)
   - 修正前：assert_equal "__Check__",            order.pay_type
   - 修正後：assert_equal "__現金__",            order.pay_type
+
+
+## 第14章 タスクI:ログイン
+
+- ユーザ登録画面の乱れを修正(p.182)
+  * app/views/users/\_form.html.erb
+  - 修正前：
+    ```
+    <div>
+      <%= f.label :name %>:
+      <%= f.text_field :name, size: 40 %>
+    </div>
+    <div>
+      <%= f.label :password, 'パスワード' %>:
+      <%= f.password_field :password, size: 40 %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation, '確認' %>:
+      <%= f.password_field :password_confirmation, size: 40 %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+    ```
+
+  - 修正後：
+    ```
+    <div class="field">
+      <%= f.label :name %>:
+      <%= f.text_field :name, size: 40 %>
+    </div>
+    <div class="field">
+      <%= f.label :password, 'パスワード' %>:
+      <%= f.password_field :password, size: 40 %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation, '確認' %>:
+      <%= f.password_field :password_confirmation, size: 40 %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    ```
+
+
+  - 実行前にGemfileの「bcript-ruby」のコメントを解除(p.182)
+    * Gemfile
+    - 修正前：# gem 'bcrypt-ruby', '~> 3.1.2'
+    - 修正後：gem 'bcrypt-ruby', '~> 3.1.2'
+
+  - 機能テストのフォルダ名(p.188)
+    - 修正前：test/__functional__/sessions_controller_test.rb
+    - 修正後：test/__controllers__/sessions_controller_test.rb
+
+  - ログアウト時のリダイレクト指定(p.186)
+    * app/controllers/sessions_controller.rb
+    - 修正前：redirect_to __store_url__, notice: "ログアウト"
+    - 修正前：redirect_to __root_url__, notice: "ログアウト"
+
+  - 機能テストでのログアウト時のリダイレクト指定(p.188)
+    * test/controllers/sessions_controller_test.rb
+    - 修正前：assert_redirected_to __store_url__
+    - 修正前：assert_redirected_to __root_url__
+    
