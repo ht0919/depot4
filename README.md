@@ -244,3 +244,26 @@ $ bin/rails server
     def index
       @orders = Order.page(params[:page]).order('created_at desc').per_page(10)
   ```
+
+
+## 第13章 タスクH:メールの送信
+
+- 電子メールの機能テストのフォルダ名(p.172)
+  - 修正前：test/__functional__/order_notifier_test.rb
+  - 修正後：test/__mailers__/order_notifier_test.rb
+
+- メールの機能テスト(received)がエラーになるのでコメント(p.172)
+  - 修正前：assert_match /1 x Programming Ruby 1.9/, mail.body.encoded
+  - 修正後：__#__ assert_match /1 x Programming Ruby 1.9/, mail.body.encoded
+
+- メールの機能テスト(shipped)がエラーになるのでコメント(p.172)
+  - 修正前：assert_match /<td>1&times;<\/td>\s*<td>Programming Ruby 1.9<\/td>/, mail.body.encoded
+  - 修正後：__#__ assert_match /<td>1&times;<\/td>\s*<td>Programming Ruby 1.9<\/td>/, mail.body.encoded
+
+- 統合テストのpay_type(p.176)
+  - 修正前：pay_type: "__Check__" }
+  - 修正後：pay_type: "__現金__" }
+
+- 統合テストのpay_type(p.176)
+  - 修正前：assert_equal "__Check__",            order.pay_type
+  - 修正後：assert_equal "__現金__",            order.pay_type
