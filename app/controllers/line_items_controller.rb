@@ -32,7 +32,7 @@ class LineItemsController < ApplicationController
       if @line_item.save
         #format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' }
         #format.html { redirect_to @line_item.car }
-        format.html { redirect_to root_path }
+        format.html { redirect_to store_url }
         format.js   { @current_item = @line_item }
         format.json { render action: 'show', status: :created, location: @line_item }
       else

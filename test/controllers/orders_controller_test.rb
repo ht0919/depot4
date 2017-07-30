@@ -21,8 +21,7 @@ class OrdersControllerTest < ActionController::TestCase
       post :create, order: { address: @order.address, email: @order.email, name: @order.name, pay_type: @order.pay_type }
     end
 
-    #assert_redirected_to store_path
-    assert_redirected_to root_path
+    assert_redirected_to store_path
   end
 
   test "should show order" do
@@ -50,8 +49,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "requires item in cart" do
     get :new
-    #assert_redirected_to store_path
-    assert_redirected_to root_path
+    assert_redirected_to store_path
     assert_equal 'カートは空です', flash[:notice]
   end
 
